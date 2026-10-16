@@ -1,0 +1,200 @@
+table financials
+	lineageTag: e8866066-e7ad-4c5b-b040-515abf3e8a7c
+
+	measure 'Net Sales' = SUM ( financials[Sales] )
+		formatString: \$#,0
+		displayFolder: KPIs
+		lineageTag: 6f1c2a10-3b7e-4c1a-9e51-0a8d4b2f7c01
+
+	measure 'Gross Profit' = SUM ( financials[Profit] )
+		formatString: \$#,0
+		displayFolder: KPIs
+		lineageTag: 6f1c2a10-3b7e-4c1a-9e51-0a8d4b2f7c02
+
+	measure 'Profit Margin' = DIVIDE ( [Gross Profit], [Net Sales] )
+		formatString: 0.0%
+		displayFolder: KPIs
+		lineageTag: 6f1c2a10-3b7e-4c1a-9e51-0a8d4b2f7c03
+
+	measure 'Units Sold Total' = SUM ( financials[Units Sold] )
+		formatString: #,0
+		displayFolder: KPIs
+		lineageTag: 6f1c2a10-3b7e-4c1a-9e51-0a8d4b2f7c04
+
+	measure 'Discount Rate' = DIVIDE ( SUM ( financials[Discounts] ), SUM ( financials[Gross Sales] ) )
+		formatString: 0.0%
+		displayFolder: KPIs
+		lineageTag: 6f1c2a10-3b7e-4c1a-9e51-0a8d4b2f7c05
+
+	column 'Month Start' = DATE ( YEAR ( financials[Date] ), MONTH ( financials[Date] ), 1 )
+		dataType: dateTime
+		formatString: mmm yyyy
+		lineageTag: 6f1c2a10-3b7e-4c1a-9e51-0a8d4b2f7c06
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column Segment
+		dataType: string
+		lineageTag: 4fa7ebde-d6f1-4d01-b029-0f47dfc7ac33
+		summarizeBy: none
+		sourceColumn: Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: bb12fa09-2183-4831-813f-b688715d124c
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product
+		dataType: string
+		lineageTag: 7091ba46-1461-484e-b1d8-16a5d33117c3
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Discount Band'
+		dataType: string
+		lineageTag: 03e1bd56-0164-4b1b-95c8-d280bf81871d
+		summarizeBy: none
+		sourceColumn: Discount Band
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Units Sold'
+		dataType: double
+		lineageTag: d46a8bcf-0394-426d-ac38-1b8ad8cc2fc2
+		summarizeBy: sum
+		sourceColumn: Units Sold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Manufacturing Price'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1635271e-57f3-4978-8f1c-c29d6949d092
+		summarizeBy: sum
+		sourceColumn: Manufacturing Price
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sale Price'
+		dataType: int64
+		formatString: 0
+		lineageTag: c01707aa-3ff2-4db3-bb70-ddac56e1ca78
+		summarizeBy: sum
+		sourceColumn: Sale Price
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gross Sales'
+		dataType: double
+		lineageTag: fd44c80e-a70a-444e-9183-942ce6c616bd
+		summarizeBy: sum
+		sourceColumn: Gross Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Discounts
+		dataType: double
+		lineageTag: f08e04ce-528c-482e-a5dd-0bfc6350d1ee
+		summarizeBy: sum
+		sourceColumn: Discounts
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Sales
+		dataType: double
+		lineageTag: 3d6cb958-aa58-4bff-88e1-39d060303d17
+		summarizeBy: sum
+		sourceColumn: " Sales"
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COGS
+		dataType: double
+		lineageTag: b8ba1068-1835-4fe2-8996-53b3dbc1ab9e
+		summarizeBy: sum
+		sourceColumn: COGS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Profit
+		dataType: double
+		lineageTag: 76517927-f4d5-40d9-8539-6d9e94cb31c7
+		summarizeBy: sum
+		sourceColumn: Profit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 08d27680-aab8-4e84-a583-5a0d2e11c480
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 58390f33-cf8a-4bc1-8899-b24b99cf1066
+			defaultHierarchy: LocalDateTable_a503e629-c47e-4d25-84af-b25b2f4bbd21.Datohierarki
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Month Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 48dfc44f-e997-48f3-858b-7a706d4ea3b4
+		summarizeBy: none
+		sourceColumn: Month Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: a87fab62-01c9-457b-89d3-a5225a8f5202
+		summarizeBy: none
+		sourceColumn: Month Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 4230b531-7599-4810-b83f-db8b9297e65d
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition financials = m
+		mode: import
+		source =
+				let
+				    Kilde = Excel.Workbook(File.Contents("C:\Users\AD18641\OneDrive - DNB Bank ASA\Documents\Data analysis\Dataset\Financial Sample.xlsx"), null, true),
+				    financials_Table = Kilde{[Item="financials",Kind="Table"]}[Data],
+				    #"Endret type" = Table.TransformColumnTypes(financials_Table,{{"Segment", type text}, {"Country", type text}, {"Product", type text}, {"Discount Band", type text}, {"Units Sold", type number}, {"Manufacturing Price", Int64.Type}, {"Sale Price", Int64.Type}, {"Gross Sales", type number}, {"Discounts", type number}, {" Sales", type number}, {"COGS", type number}, {"Profit", type number}, {"Date", type date}, {"Month Number", Int64.Type}, {"Month Name", type text}, {"Year", Int64.Type}})
+				in
+				    #"Endret type"
+
+	annotation PBI_ResultType = Table
+

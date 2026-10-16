@@ -1,0 +1,52 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "trendSalesProfit",
+  "position": { "x": 40, "y": 292, "z": 300, "height": 400, "width": 1132, "tabOrder": 300 },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": { "Column": { "Expression": { "SourceRef": { "Entity": "financials" } }, "Property": "Month Start" } },
+              "queryRef": "financials.Month Start",
+              "nativeQueryRef": "Month Start",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "financials" } }, "Property": "Net Sales" } },
+              "queryRef": "financials.Net Sales",
+              "nativeQueryRef": "Net Sales"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "financials" } }, "Property": "Gross Profit" } },
+              "queryRef": "financials.Gross Profit",
+              "nativeQueryRef": "Gross Profit"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": { "Column": { "Expression": { "SourceRef": { "Entity": "financials" } }, "Property": "Month Start" } },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "lineStyles": [{ "properties": { "strokeWidth": { "expr": { "Literal": { "Value": "3L" } } }, "showMarker": { "expr": { "Literal": { "Value": "false" } } } } }]
+    },
+    "visualContainerObjects": {
+      "title": [{ "properties": { "text": { "expr": { "Literal": { "Value": "'Net Sales & Gross Profit by Month'" } } } } }]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

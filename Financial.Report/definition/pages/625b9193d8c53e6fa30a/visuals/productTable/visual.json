@@ -1,0 +1,48 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "productTable",
+  "position": { "x": 662, "y": 716, "z": 401, "height": 324, "width": 596, "tabOrder": 401 },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": { "Column": { "Expression": { "SourceRef": { "Entity": "financials" } }, "Property": "Product" } },
+              "queryRef": "financials.Product",
+              "nativeQueryRef": "Product"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "financials" } }, "Property": "Net Sales" } },
+              "queryRef": "financials.Net Sales",
+              "nativeQueryRef": "Net Sales"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "financials" } }, "Property": "Gross Profit" } },
+              "queryRef": "financials.Gross Profit",
+              "nativeQueryRef": "Gross Profit"
+            },
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "financials" } }, "Property": "Profit Margin" } },
+              "queryRef": "financials.Profit Margin",
+              "nativeQueryRef": "Margin"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "financials" } }, "Property": "Net Sales" } },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "title": [{ "properties": { "text": { "expr": { "Literal": { "Value": "'Product Performance'" } } } } }]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
